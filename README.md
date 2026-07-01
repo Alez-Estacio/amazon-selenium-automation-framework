@@ -1,90 +1,157 @@
-# Proyecto de Automatización de Pruebas: Amazon Search & Cart
+# Amazon Search & Cart Test Automation Framework
 
-## Descripción
+## Overview
 
-Este proyecto implementa la automatización de pruebas funcionales para la búsqueda y agregado de productos al carrito en Amazon, utilizando **Java**, **Selenium WebDriver**, **Cucumber** (BDD) y **JUnit**. El objetivo es validar que un usuario puede buscar productos, navegar entre páginas de resultados, seleccionar un producto y añadirlo al carrito correctamente.
+This repository contains a functional UI test automation framework for validating Amazon search and cart flows using **Java**, **Selenium WebDriver**, **Cucumber BDD**, **JUnit**, and **Gradle**.
 
-## Tecnologías, Herramientas y Versiones
+The main goal of this project is to verify that a user can search for products, navigate through search result pages, select a product, and add it to the shopping cart successfully.
 
-- **Lenguaje:** Java 17
-- **Automatización Web:** Selenium WebDriver `4.15.0`
-- **Framework BDD:** Cucumber Java `7.14.1`
-- **Ejecución de pruebas:** JUnit Jupiter `5.9.1`
-- **Gestión de dependencias:** Gradle `8.1`
-- **Gestión de drivers:** WebDriverManager `5.6.2`
-- **Reportes:** Cucumber HTML Reports
-- **Navegador soportado:** Google Chrome
+## Tech Stack
 
-## Manejador de Dependencias
+* Java 17
+* Selenium WebDriver 4.15.0
+* Cucumber Java 7.14.1
+* JUnit Jupiter 5.9.1
+* Gradle 8.1
+* WebDriverManager 5.6.2
+* Cucumber HTML Reports
+* Google Chrome
 
-Este proyecto utiliza **Gradle** como manejador de dependencias y automatizador de tareas. No es necesario instalarlo manualmente, ya que se incluye el wrapper (`gradlew`).
+## Prerequisites
 
-## Estructura del Proyecto
+Before running the project, make sure you have the following installed:
 
-```
-├── src
-│   ├── main
-│   └── test
-│       ├── java
-│       │   ├── pages         # Page Objects (AmazonSearchPage, BasePage)
-│       │   ├── steps         # Step Definitions y Hooks
-│       │   └── runner        # Clase runner para ejecución
-│       └── resources
-│           └── features      # Archivos .feature en Gherkin
-├── build.gradle              # Configuración de dependencias y plugins
-├── gradlew / gradlew.bat     # Gradle Wrapper
-├── run_tests.bat             # Script para ejecutar pruebas en Windows
-├── README.md                 # Este archivo
+* JDK 17
+* Google Chrome
+* Git
+
+Gradle does not need to be installed manually because this project includes the Gradle Wrapper.
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Alez-Estacio/amazon-selenium-automation-framework.git
 ```
 
-## Instalación y Requisitos
+Navigate to the project directory:
 
-- **Java 11** o superior instalado
-- **Google Chrome** instalado
-- No es necesario instalar Gradle, se usa el wrapper incluido (`gradlew`)
+```bash
+cd amazon-selenium-automation-framework
+```
 
-## Ejecución de las Pruebas
+## Project Structure
 
-### Comando principal de ejecución
+```text
+amazon-selenium-automation-framework/
+├── src/
+│   ├── main/
+│   └── test/
+│       ├── java/
+│       │   ├── pages/          # Page Objects: AmazonSearchPage, BasePage
+│       │   ├── steps/          # Step Definitions and Hooks
+│       │   └── runner/         # Test runner class
+│       └── resources/
+│           └── features/       # Gherkin feature files
+├── build.gradle                # Gradle dependencies and plugins
+├── gradlew                     # Gradle Wrapper for Linux/macOS
+├── gradlew.bat                 # Gradle Wrapper for Windows
+├── run_tests.bat               # Windows test execution script
+├── settings.gradle             # Gradle project settings
+└── README.md                   # Project documentation
+```
 
-```sh
+## Running Tests
+
+Run the test suite using the Gradle Wrapper:
+
+```bash
 ./gradlew test
 ```
 
-O en Windows:
+On Windows, you can run:
 
-```bat
+```bash
+gradlew.bat test
+```
+
+You can also use the included Windows script:
+
+```bash
 run_tests.bat
 ```
 
-### Opción 2: Desde un IDE (IntelliJ, Eclipse, VSCode)
+## Running Tests from an IDE
 
-- Ejecuta la clase `runner` ubicada en `src/test/java/runner/runner.java` como JUnit Test.
+You can execute the test suite from an IDE such as IntelliJ IDEA, Eclipse, or Visual Studio Code by running the test runner class located under:
 
-## Reportes
+```text
+src/test/java/runner/
+```
 
-- Al finalizar la ejecución, se genera un reporte HTML en:
-  - `build/reports/tests/test/index.html`
-  - También se genera un reporte de Cucumber en `target/cucumber-reports/`
-- Los screenshots de cada paso y de los fallos se adjuntan automáticamente al reporte.
+Run it as a JUnit test.
 
-## Estructura de los Features
+## Reports
 
-- Los escenarios están escritos en Gherkin, con ejemplos parametrizados para distintos productos.
-- Los pasos están documentados y son independientes, facilitando la reutilización y el mantenimiento.
+After test execution, the default Gradle test report is generated at:
 
-## Buenas Prácticas Implementadas
+```text
+build/reports/tests/test/index.html
+```
 
-- **Page Object Model:** Separación de lógica de interacción y lógica de pruebas.
-- **Independencia de pasos:** Cada step valida su contexto antes de ejecutar acciones.
-- **Captura de evidencias:** Screenshots automáticos por paso y por fallo.
-- **Comentarios claros:** Todo el código y los features están documentados en español.
+Cucumber reports are generated at:
 
-## Personalización
+```text
+target/cucumber-reports/
+```
 
-- Puedes modificar el archivo `AmazonSearch.feature` para probar otros productos o flujos.
-- Los selectores y lógica de los Page Objects pueden adaptarse fácilmente a cambios en la web de Amazon.
+Screenshots for each step and failed scenarios are attached automatically to the test report.
 
----
+## Feature Files
 
-**¡Gracias por usar este proyecto de automatización!**
+The scenarios are written in Gherkin and include parameterized examples for different product searches.
+
+The feature files are located at:
+
+```text
+src/test/resources/features/
+```
+
+These scenarios are designed to be readable, reusable, and easy to maintain.
+
+## Test Design
+
+This project follows common UI test automation practices:
+
+* **Page Object Model:** separates page interactions from test logic.
+* **BDD with Cucumber:** describes scenarios in a business-readable format.
+* **Reusable Step Definitions:** keeps steps independent and maintainable.
+* **Automatic Evidence Capture:** attaches screenshots for traceability.
+* **Gradle Wrapper:** standardizes build execution across environments.
+* **Cucumber Reports:** provides execution results in HTML format.
+
+## Customization
+
+You can modify the feature file to test different products or search flows.
+
+Main feature file:
+
+```text
+src/test/resources/features/AmazonSearch.feature
+```
+
+Selectors and browser interaction logic can be updated in the Page Object classes if the Amazon UI changes.
+
+## Notes
+
+This project is intended for QA automation practice and technical demonstration purposes.
+
+Amazon is a dynamic website, so locators and flows may require maintenance if the UI, validations, or anti-automation behavior changes.
+
+## Author
+
+**Alezander Estacio**
+
+QA Automation Engineer
+
